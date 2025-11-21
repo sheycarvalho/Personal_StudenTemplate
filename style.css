@@ -778,6 +778,17 @@ h1 {
     width: 250px;
     -webkit-box-reflect: below 1px linear-gradient(transparent, transparent , #0002 , #0004);
   }
+
+  .slide-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+    text-align: center;
+    margin: 10px 0;
+    text-shadow: 2px 2px 4px #000;
+  }
+
   .link-container {
     display: none;
     flex-direction: column;
