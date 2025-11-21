@@ -356,15 +356,15 @@ h1 {
 .carousel .list .item .content {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    max-width: 80%;
+    left: 10%;
+    transform: translateY(-50%);
+    width: 600px;
+    max-width: 50%;
     box-sizing: border-box;
     color: #fff;
     text-shadow: 3px 3px 6px #000;
     z-index: 3;
-    text-align: center;
+    text-align: left;
 }
 
 .carousel .list .item .author {
