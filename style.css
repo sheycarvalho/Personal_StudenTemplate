@@ -362,54 +362,54 @@ h1 {
 
 .carousel .list .item .content {
     position: absolute;
-    top: 10%;
-    width: 1140px;
-    max-width: 80%;
-    left: 45%;
-    transform: translateX(-50%);
-    padding-right: 30%;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 500px;
+    max-width: 45%;
     box-sizing: border-box;
     color: #fff;
-    text-shadow: 3px 3px 6px #000;
+    text-shadow: 2px 2px 4px #000;
     z-index: 3;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-left: 4px solid var(--primary);
+    padding: 30px;
+    border-radius: 10px;
 }
 
 .carousel .list .item .author {
     font-family: 'Times New Roman';
     font-weight: bold;
     letter-spacing: 10px;
+    font-size: 14px;
 }
 
 .carousel .list .item .title{
     font-family: 'Times New Roman';
-    font-size: 4em;
+    font-size: 2.5em;
     font-weight: bold;
-    line-height: 1.3em;
+    line-height: 1.2em;
     color: var(--primary);
-}
-.carousel .list .item .des{
-    font-family: 'Poppins', sans-serif;
-    font-size: 10;
-    color: white;
+    margin-top: 10px;
 }
 
-.carousel .list .item .author {
-    font-family: 'Times New Roman';
-    font-weight: bold;
-    letter-spacing: 10px;
-}
-
-.carousel .list .item .title{
-    font-family: 'Times New Roman';
-    font-size: 4em;
-    font-weight: bold;
-    line-height: 1.3em;
-    color: var(--primary);
-}
 .carousel .list .item .des{
     font-family: 'Poppins', sans-serif;
-    font-size: 10;
+    font-size: 14px;
+    line-height: 1.8;
     color: white;
+    margin-top: 15px;
+    border: 1px solid rgba(250, 164, 187, 0.3);
+    border-radius: 50%;
+    padding: 30px 35px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .thumbnail {
