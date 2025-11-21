@@ -356,16 +356,16 @@ h1 {
 .carousel .list .item .content {
     position: absolute;
     top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    width: 600px;
-    max-width: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    max-width: 55%;
     box-sizing: border-box;
     color: #fff;
     z-index: 3;
-    text-align: left;
-    padding: 20px;
-    filter: drop-shadow(0 0 60px rgba(0, 0, 0, 1)) drop-shadow(0 0 40px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 80px rgba(0, 0, 0, 0.8));
+    text-align: center;
+    padding: 25px;
+    filter: drop-shadow(0 0 50px rgba(0, 0, 0, 1)) drop-shadow(0 0 80px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 100px rgba(0, 0, 0, 0.7));
 }
 
 .carousel .list .item .author {
