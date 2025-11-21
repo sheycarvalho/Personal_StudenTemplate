@@ -11,13 +11,18 @@ navItems.forEach(item => item.addEventListener('click', handleNavItemClick
 
 
 // JavaScript for the_pinks Carousel
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     let nextDom = document.getElementById('next');
     let prevDom = document.getElementById('prev');
     let carouselDom = document.querySelector('.carousel');
     let SliderDom = document.querySelector('.carousel .list');
     let thumbnailBorderDom = document.querySelector('.carousel .thumbnail');
     let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
+
+    if (!nextDom || !prevDom || !carouselDom || !SliderDom || !thumbnailBorderDom) {
+        console.error('Carousel elements not found');
+        return;
+    }
 
     thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
 
