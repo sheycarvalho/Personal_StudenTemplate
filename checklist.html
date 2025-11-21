@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist - SHEYXP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #FAA4BB;
+            --secondary: #FF006E;
+        }
+
+        body {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(255, 0, 110, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 3em;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        #taskInput {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1em;
+        }
+
+        #taskInput::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        #addBtn {
+            padding: 15px 30px;
+            background: var(--primary);
+            border: none;
+            border-radius: 10px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #addBtn:hover {
+            background: var(--secondary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .todo-list {
+            list-style: none;
+        }
+
+        .todo-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .todo-item:hover {
+            border-color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .todo-item.completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        .todo-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .todo-item span {
+            flex: 1;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .delete-btn {
+            background: var(--secondary);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: #c70055;
+            transform: scale(1.1);
+        }
+
+        .stats {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 0, 110, 0.2);
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .stats span {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> Voltar</a>
+        
+        <div class="header">
+            <h1>📝 Checklist To-Do</h1>
+            <p>Organize suas tarefas e projetos</p>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="Digite uma nova tarefa...">
+            <button id="addBtn"><i class="fas fa-plus"></i> Adicionar</button>
+        </div>
+
+        <ul class="todo-list" id="todoList"></ul>
+
+        <div class="stats">
+            Total de tarefas: <span id="totalTasks">0</span> | 
+            Concluídas: <span id="completedTasks">0</span>
+        </div>
+    </div>
+
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const addBtn = document.getElementById('addBtn');
+        const todoList = document.getElementById('todoList');
+        const totalTasksSpan = document.getElementById('totalTasks');
+        const completedTasksSpan = document.getElementById('completedTasks');
+
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        function saveTasks() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function updateStats() {
+            totalTasksSpan.textContent = tasks.length;
+            completedTasksSpan.textContent = tasks.filter(t => t.completed).length;
+        }
+
+        function renderTasks() {
+            todoList.innerHTML = '';
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.className = `todo-item ${task.completed ? 'completed' : ''}`;
+                
+                li.innerHTML = `
+                    <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${index})">
+                    <span>${task.text}</span>
+                    <button class="delete-btn" onclick="deleteTask(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                `;
+                
+                todoList.appendChild(li);
+            });
+            updateStats();
+        }
+
+        function addTask() {
+            const text = taskInput.value.trim();
+            if (text) {
+                tasks.push({ text, completed: false });
+                taskInput.value = '';
+                saveTasks();
+                renderTasks();
+            }
+        }
+
+        function toggleTask(index) {
+            tasks[index].completed = !tasks[index].completed;
+            saveTasks();
+            renderTasks();
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            saveTasks();
+            renderTasks();
+        }
+
+        addBtn.addEventListener('click', addTask);
+        taskInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') addTask();
+        });
+
+        renderTasks();
+    </script>
+</body>
+</html>
