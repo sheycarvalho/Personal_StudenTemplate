@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Frameworks e Ferramentas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 20px;
+            margin-bottom: 50px;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .sticky-note {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            min-height: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sticky-note:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .sticky-note::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+        }
+
+        .sticky-note.blue {
+            background: linear-gradient(135deg, #667eea 0%, #4c63d2 100%);
+        }
+
+        .sticky-note.cyan {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .sticky-note.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .sticky-note.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .sticky-note.red {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .sticky-note.purple {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .sticky-note.yellow {
+            background: linear-gradient(135deg, #FFEE91 0%, #ffd966 100%);
+        }
+
+        .note-icon {
+            font-size: 40px;
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .note-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .note-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .note-items li {
+            color: rgba(255, 255, 255, 0.95);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 15px;
+        }
+
+        .note-items li:last-child {
+            border-bottom: none;
+        }
+
+        .note-items li i {
+            margin-right: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .notes-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .back-button {
+                top: 20px;
+                left: 20px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html#shows_and_series" class="back-button">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <div class="container">
+        <h1>BIBLIOTECA</h1>
+        <p class="subtitle">Frameworks e Ferramentas Essenciais para Desenvolvimento</p>
+
+        <div class="notes-grid">
+            <div class="sticky-note blue">
+                <div class="note-icon"><i class="fab fa-js"></i></div>
+                <div class="note-title">JavaScript</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> React.js</li>
+                    <li><i class="fas fa-check"></i> Vue.js</li>
+                    <li><i class="fas fa-check"></i> Angular</li>
+                    <li><i class="fas fa-check"></i> Next.js</li>
+                    <li><i class="fas fa-check"></i> Node.js</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note cyan">
+                <div class="note-icon"><i class="fas fa-paint-brush"></i></div>
+                <div class="note-title">CSS Frameworks</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Tailwind CSS</li>
+                    <li><i class="fas fa-check"></i> Bootstrap</li>
+                    <li><i class="fas fa-check"></i> Material UI</li>
+                    <li><i class="fas fa-check"></i> Styled Components</li>
+                    <li><i class="fas fa-check"></i> Sass/SCSS</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note green">
+                <div class="note-icon"><i class="fab fa-python"></i></div>
+                <div class="note-title">Python</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Django</li>
+                    <li><i class="fas fa-check"></i> Flask</li>
+                    <li><i class="fas fa-check"></i> FastAPI</li>
+                    <li><i class="fas fa-check"></i> Pandas</li>
+                    <li><i class="fas fa-check"></i> NumPy</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note orange">
+                <div class="note-icon"><i class="fas fa-database"></i></div>
+                <div class="note-title">Databases</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> MongoDB</li>
+                    <li><i class="fas fa-check"></i> PostgreSQL</li>
+                    <li><i class="fas fa-check"></i> MySQL</li>
+                    <li><i class="fas fa-check"></i> Redis</li>
+                    <li><i class="fas fa-check"></i> Firebase</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note red">
+                <div class="note-icon"><i class="fas fa-tools"></i></div>
+                <div class="note-title">DevOps</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Docker</li>
+                    <li><i class="fas fa-check"></i> Kubernetes</li>
+                    <li><i class="fas fa-check"></i> Git/GitHub</li>
+                    <li><i class="fas fa-check"></i> CI/CD Pipelines</li>
+                    <li><i class="fas fa-check"></i> AWS/Azure</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note purple">
+                <div class="note-icon"><i class="fas fa-mobile-alt"></i></div>
+                <div class="note-title">Mobile</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> React Native</li>
+                    <li><i class="fas fa-check"></i> Flutter</li>
+                    <li><i class="fas fa-check"></i> Ionic</li>
+                    <li><i class="fas fa-check"></i> Swift</li>
+                    <li><i class="fas fa-check"></i> Kotlin</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note yellow">
+                <div class="note-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="note-title">Testing</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Jest</li>
+                    <li><i class="fas fa-check"></i> Cypress</li>
+                    <li><i class="fas fa-check"></i> Selenium</li>
+                    <li><i class="fas fa-check"></i> Pytest</li>
+                    <li><i class="fas fa-check"></i> Postman</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note blue">
+                <div class="note-icon"><i class="fas fa-pen-fancy"></i></div>
+                <div class="note-title">Design</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Figma</li>
+                    <li><i class="fas fa-check"></i> Adobe XD</li>
+                    <li><i class="fas fa-check"></i> Sketch</li>
+                    <li><i class="fas fa-check"></i> Canva</li>
+                    <li><i class="fas fa-check"></i> Photoshop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

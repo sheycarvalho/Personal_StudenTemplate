@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps - IDEs e Aplicativos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 20px;
+            margin-bottom: 50px;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .sticky-note {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            min-height: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .sticky-note:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .sticky-note::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+        }
+
+        .sticky-note.blue {
+            background: linear-gradient(135deg, #667eea 0%, #4c63d2 100%);
+        }
+
+        .sticky-note.cyan {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .sticky-note.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .sticky-note.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .sticky-note.red {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .sticky-note.purple {
+            background: linear-gradient(135deg, #7b68d4 0%, #c471ed 100%);
+        }
+
+        .sticky-note.yellow {
+            background: linear-gradient(135deg, #FFEE91 0%, #ffd966 100%);
+        }
+
+        .sticky-note.coral {
+            background: linear-gradient(135deg, #FF937E 0%, #ff6b52 100%);
+        }
+
+        .note-icon {
+            font-size: 40px;
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .note-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .note-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .note-items li {
+            color: rgba(255, 255, 255, 0.95);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 15px;
+        }
+
+        .note-items li:last-child {
+            border-bottom: none;
+        }
+
+        .note-items li i {
+            margin-right: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .back-button {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .notes-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .back-button {
+                top: 20px;
+                left: 20px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html#shows_and_series" class="back-button">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <div class="container">
+        <h1>APPS & IDEs</h1>
+        <p class="subtitle">Aplicativos e IDEs Essenciais para Desenvolvimento Full Stack</p>
+
+        <div class="notes-grid">
+            <div class="sticky-note blue">
+                <div class="note-icon"><i class="fas fa-code"></i></div>
+                <div class="note-title">IDEs Principais</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Visual Studio Code</li>
+                    <li><i class="fas fa-check"></i> IntelliJ IDEA</li>
+                    <li><i class="fas fa-check"></i> WebStorm</li>
+                    <li><i class="fas fa-check"></i> PyCharm</li>
+                    <li><i class="fas fa-check"></i> Sublime Text</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note cyan">
+                <div class="note-icon"><i class="fab fa-js"></i></div>
+                <div class="note-title">JavaScript/Node.js</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> VS Code + Extensions</li>
+                    <li><i class="fas fa-check"></i> WebStorm</li>
+                    <li><i class="fas fa-check"></i> Atom</li>
+                    <li><i class="fas fa-check"></i> Brackets</li>
+                    <li><i class="fas fa-check"></i> CodeSandbox</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note green">
+                <div class="note-icon"><i class="fab fa-python"></i></div>
+                <div class="note-title">Python</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> PyCharm</li>
+                    <li><i class="fas fa-check"></i> VS Code</li>
+                    <li><i class="fas fa-check"></i> Jupyter Notebook</li>
+                    <li><i class="fas fa-check"></i> Spyder</li>
+                    <li><i class="fas fa-check"></i> Google Colab</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note orange">
+                <div class="note-icon"><i class="fab fa-java"></i></div>
+                <div class="note-title">Java</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> IntelliJ IDEA</li>
+                    <li><i class="fas fa-check"></i> Eclipse</li>
+                    <li><i class="fas fa-check"></i> NetBeans</li>
+                    <li><i class="fas fa-check"></i> Android Studio</li>
+                    <li><i class="fas fa-check"></i> VS Code</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note red">
+                <div class="note-icon"><i class="fas fa-terminal"></i></div>
+                <div class="note-title">Terminais</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Git Bash</li>
+                    <li><i class="fas fa-check"></i> Windows Terminal</li>
+                    <li><i class="fas fa-check"></i> iTerm2 (Mac)</li>
+                    <li><i class="fas fa-check"></i> Hyper</li>
+                    <li><i class="fas fa-check"></i> Cmder</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note purple">
+                <div class="note-icon"><i class="fas fa-database"></i></div>
+                <div class="note-title">Database Tools</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> MongoDB Compass</li>
+                    <li><i class="fas fa-check"></i> pgAdmin</li>
+                    <li><i class="fas fa-check"></i> MySQL Workbench</li>
+                    <li><i class="fas fa-check"></i> DBeaver</li>
+                    <li><i class="fas fa-check"></i> TablePlus</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note yellow">
+                <div class="note-icon"><i class="fas fa-network-wired"></i></div>
+                <div class="note-title">API Testing</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Postman</li>
+                    <li><i class="fas fa-check"></i> Insomnia</li>
+                    <li><i class="fas fa-check"></i> Thunder Client</li>
+                    <li><i class="fas fa-check"></i> REST Client</li>
+                    <li><i class="fas fa-check"></i> Swagger UI</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note coral">
+                <div class="note-icon"><i class="fab fa-git-alt"></i></div>
+                <div class="note-title">Version Control</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> GitHub Desktop</li>
+                    <li><i class="fas fa-check"></i> GitKraken</li>
+                    <li><i class="fas fa-check"></i> Sourcetree</li>
+                    <li><i class="fas fa-check"></i> Git CLI</li>
+                    <li><i class="fas fa-check"></i> Tower</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note blue">
+                <div class="note-icon"><i class="fas fa-drafting-compass"></i></div>
+                <div class="note-title">Design & Prototype</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Figma</li>
+                    <li><i class="fas fa-check"></i> Adobe XD</li>
+                    <li><i class="fas fa-check"></i> Sketch</li>
+                    <li><i class="fas fa-check"></i> InVision</li>
+                    <li><i class="fas fa-check"></i> Zeplin</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note green">
+                <div class="note-icon"><i class="fas fa-browser"></i></div>
+                <div class="note-title">Browsers DevTools</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Chrome DevTools</li>
+                    <li><i class="fas fa-check"></i> Firefox Developer</li>
+                    <li><i class="fas fa-check"></i> Safari Web Inspector</li>
+                    <li><i class="fas fa-check"></i> Edge DevTools</li>
+                    <li><i class="fas fa-check"></i> Responsively App</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note orange">
+                <div class="note-icon"><i class="fas fa-mobile-alt"></i></div>
+                <div class="note-title">Mobile Development</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Android Studio</li>
+                    <li><i class="fas fa-check"></i> Xcode</li>
+                    <li><i class="fas fa-check"></i> Expo</li>
+                    <li><i class="fas fa-check"></i> Flutter Studio</li>
+                    <li><i class="fas fa-check"></i> Ionic Creator</li>
+                </ul>
+            </div>
+
+            <div class="sticky-note red">
+                <div class="note-icon"><i class="fas fa-rocket"></i></div>
+                <div class="note-title">Deployment</div>
+                <ul class="note-items">
+                    <li><i class="fas fa-check"></i> Vercel</li>
+                    <li><i class="fas fa-check"></i> Netlify</li>
+                    <li><i class="fas fa-check"></i> Heroku</li>
+                    <li><i class="fas fa-check"></i> Docker Desktop</li>
+                    <li><i class="fas fa-check"></i> AWS CLI</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
