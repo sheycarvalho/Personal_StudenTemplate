@@ -196,7 +196,7 @@ section {
 /* CSS for about */
 .learn_more {
     position: relative;
-    background: black;
+    background: #5A0E24;
     justify-content: center;
 }
 
@@ -757,7 +757,7 @@ h1 {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: rgb(26, 19, 20); 
+    background-color: #5A0E24; 
 
     h1 {
         font-size: 40px;

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLINK HUB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f1419;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        /* Seção de Fanbases */
+        .fanbase-section {
+            padding: 100px 40px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .fanbase-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .fanbase-header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #FF006E, #8338EC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .fanbase-header p {
+            font-size: 18px;
+            color: #b8b8b8;
+        }
+
+        .fanbase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .fanbase-card {
+            background: linear-gradient(145deg, #1a1f2e, #252b3b);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fanbase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(131, 56, 236, 0.1));
+            border-radius: 0 20px 0 100%;
+        }
+
+        .fanbase-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 0, 110, 0.5);
+            box-shadow: 0 20px 40px rgba(255, 0, 110, 0.2);
+        }
+
+        .fanbase-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #FF006E, #8338EC);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fanbase-icon i {
+            font-size: 32px;
+            color: white;
+        }
+
+        .fanbase-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .fanbase-handle {
+            color: #8338EC;
+            font-size: 15px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .fanbase-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #b8b8b8;
+        }
+
+        .info-item i {
+            color: #FF006E;
+        }
+
+        .fanbase-description {
+            color: #b8b8b8;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .fanbase-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #FF006E, #8338EC);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fanbase-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(255, 0, 110, 0.4);
+        }
+
+        .external-icon {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 18px;
+        }
+
+        /* Seção de Músicas */
+        .songs-section {
+            padding: 80px 40px;
+            background: #0a0e14;
+        }
+
+        .songs-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .songs-label {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #8338EC;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .songs-header h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .song-card {
+            background: #1a1f2e;
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .song-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .song-card.featured {
+            background: linear-gradient(135deg, #8e5572, #6d3f5a);
+        }
+
+        .spotify-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spotify-icon i {
+            color: #1DB954;
+            font-size: 20px;
+        }
+
+        .youtube-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .youtube-icon i {
+            color: #FF0000;
+            font-size: 20px;
+        }
+
+        .album-cover {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .song-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .song-artist {
+            color: #b8b8b8;
+            font-size: 15px;
+            margin-bottom: 20px;
+        }
+
+        .song-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .play-button {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .play-button i {
+            color: #000;
+            font-size: 20px;
+            margin-left: 3px;
+        }
+
+        .song-duration {
+            color: #b8b8b8;
+            font-size: 14px;
+        }
+
+        .save-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #b8b8b8;
+            font-size: 14px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .save-button:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .fanbase-header h1 {
+                font-size: 36px;
+            }
+
+            .fanbase-grid,
+            .songs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .songs-header h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html#home" class="back-button">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+
+    <!-- Seção de Fanbases -->
+    <section class="fanbase-section">
+        <div class="fanbase-header">
+            <h1>HUB</h1>
+            <p>Conecte suas ideias em um único lugar</p>
+        </div>
+
+        <div class="fanbase-grid">
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Curso de Figma</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Criando interfaces do zero até o protótipo final</p>
+                <a href="https://www.cursae.com.br/curso/figma-criando-interfaces-do-zero-ate-o-prototipo-final" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Curso de oratória de alta performance</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Falar em público é dom ou uma soft skill?</p>
+                <a href="https://kultivi.com/cursos/negocios/oratoria-de-alta-performance" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Trilhas em Tecnologia</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Capacitações gratuitas elaboradas por profissionais de instituições renomadas e que irão transformar a sua carreira.</p>
+                <a href="https://ticemtrilhas.org.br/" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Teste de Inglês</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Comece hoje!</p>
+                <a href="https://test-english.com/" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Teste de nível de inglês</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Comece hoje!</p>
+                <a href="https://www.pravaler.com.br/pra-testar/exercicios/teste-de-nivel-de-ingles-basico-ao-pre-intermediario/" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Teste Padronizado EF SET</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Comece hoje!</p>
+                <a href="https://www.efset.org/pt/" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Mulheres na Tecnologia</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Comunidade</p>
+                <a href="https://github.com/anatechdev/mulheres-na-tecnologia" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Dicionário de Mulheres Negras</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Algumas mulheres que fizeram e ainda fazem parte da história do Brasil e mundo</p>
+                <a href="https://sheycarvalho.github.io/dicionario_mulheresnegras/" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+
+            <div class="fanbase-card">
+                <i class="fas fa-external-link-alt external-icon"></i>
+                <div class="fanbase-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Tutoriais</h3>
+                <span class="fanbase-handle">Gratuito</span>
+                <div class="fanbase-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Online</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-star"></i>
+                        <span>Muito bom</span>
+                    </div>
+                </div>
+                <p class="fanbase-description">Documentação</p>
+                <a href="https://www.w3schools.com/" target="_blank" class="fanbase-button" style="margin-bottom: 10px;">View Details</a>
+                <a href="https://developer.mozilla.org/" target="_blank" class="fanbase-button">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Músicas -->
+    <section class="songs-section">
+        <div class="songs-header">
+            <p class="songs-label">MORE SONGS</p>
+            <h2>More songs by Blackpink</h2>
+        </div>
+
+        <div class="songs-grid">
+            <div class="song-card">
+                <div class="spotify-icon">
+                    <i class="fab fa-spotify"></i>
+                </div>
+                <img src="https://i.scdn.co/image/ab67616d0000b273bfd46639322b597331d9ecef" alt="Shut Down" class="album-cover">
+                <h3 class="song-title">Shut Down</h3>
+                <p class="song-artist">BLACKPINK</p>
+                <div class="song-actions">
+                    <a href="https://open.spotify.com/track/7gRFDGEzF9UkBV233yv2dc" target="_blank" class="play-button">
+                        <i class="fas fa-play"></i>
+                    </a>
+                    <span class="song-duration">02:55</span>
+                    <a href="https://open.spotify.com/track/7gRFDGEzF9UkBV233yv2dc" target="_blank" class="save-button">
+                        <i class="fas fa-plus"></i> Salvar no Spotify
+                    </a>
+                </div>
+            </div>
+
+            <div class="song-card featured">
+                <div class="spotify-icon">
+                    <i class="fab fa-spotify"></i>
+                </div>
+                <img src="https://i.scdn.co/image/ab67616d0000b2737dd8f95320e8ef08aa121dfe" alt="Pretty Savage" class="album-cover">
+                <h3 class="song-title">Pretty Savage</h3>
+                <p class="song-artist">BLACKPINK</p>
+                <div class="song-actions">
+                    <a href="https://open.spotify.com/track/6YyNFa9CzdEjCgdJQxpTRN" target="_blank" class="play-button">
+                        <i class="fas fa-play"></i>
+                    </a>
+                    <span class="song-duration">03:21</span>
+                    <a href="https://open.spotify.com/track/6YyNFa9CzdEjCgdJQxpTRN" target="_blank" class="save-button">
+                        <i class="fas fa-plus"></i> Salvar no Spotify
+                    </a>
+                </div>
+            </div>
+
+            <div class="song-card">
+                <div class="spotify-icon">
+                    <i class="fab fa-spotify"></i>
+                </div>
+                <img src="https://i.scdn.co/image/ab67616d0000b2737dd8f95320e8ef08aa121dfe" alt="The Happiest Girl" class="album-cover">
+                <h3 class="song-title">The Happiest Girl</h3>
+                <p class="song-artist">BLACKPINK</p>
+                <div class="song-actions">
+                    <a href="https://open.spotify.com/track/4y3090Xz2gCtpdLpalOisK" target="_blank" class="play-button">
+                        <i class="fas fa-play"></i>
+                    </a>
+                    <span class="song-duration">03:42</span>
+                    <a href="https://open.spotify.com/track/4y3090Xz2gCtpdLpalOisK" target="_blank" class="save-button">
+                        <i class="fas fa-plus"></i> Salvar no Spotify
+                    </a>
+                </div>
+            </div>
+
+            <div class="song-card">
+                <div class="youtube-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <img src="https://i.ytimg.com/vi/IHNzOHi8sJs/maxresdefault.jpg" alt="DDU-DU DDU-DU" class="album-cover">
+                <h3 class="song-title">DDU-DU DDU-DU</h3>
+                <p class="song-artist">BLACKPINK</p>
+                <div class="song-actions">
+                    <a href="https://www.youtube.com/watch?v=IHNzOHi8sJs" target="_blank" class="play-button">
+                        <i class="fas fa-play"></i>
+                    </a>
+                    <span class="song-duration">03:29</span>
+                    <a href="https://www.youtube.com/watch?v=IHNzOHi8sJs" target="_blank" class="save-button">
+                        <i class="fab fa-youtube"></i> Ver no YouTube
+                    </a>
+                </div>
+            </div>
+
+            <div class="song-card">
+                <div class="youtube-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <img src="https://i.ytimg.com/vi/ioNng23DkIM/maxresdefault.jpg" alt="How You Like That" class="album-cover">
+                <h3 class="song-title">How You Like That</h3>
+                <p class="song-artist">BLACKPINK</p>
+                <div class="song-actions">
+                    <a href="https://www.youtube.com/watch?v=ioNng23DkIM" target="_blank" class="play-button">
+                        <i class="fas fa-play"></i>
+                    </a>
+                    <span class="song-duration">03:02</span>
+                    <a href="https://www.youtube.com/watch?v=ioNng23DkIM" target="_blank" class="save-button">
+                        <i class="fab fa-youtube"></i> Ver no YouTube
+                    </a>
+                </div>
+            </div>
+
+            <div class="song-card">
+                <div class="youtube-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <img src="https://i.ytimg.com/vi/FzVR_fymZw4/maxresdefault.jpg" alt="Kill This Love" class="album-cover">
+                <h3 class="song-title">Kill This Love</h3>
+                <p class="song-artist">BLACKPINK</p>
+                <div class="song-actions">
+                    <a href="https://www.youtube.com/watch?v=2S24-y0Ij3Y" target="_blank" class="play-button">
+                        <i class="fas fa-play"></i>
+                    </a>
+                    <span class="song-duration">03:13</span>
+                    <a href="https://www.youtube.com/watch?v=2S24-y0Ij3Y" target="_blank" class="save-button">
+                        <i class="fab fa-youtube"></i> Ver no YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
