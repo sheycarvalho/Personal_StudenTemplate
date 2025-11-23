@@ -12,7 +12,7 @@
 
    <nav>
     <ul class="sidebar">
-      <li onclick=hideSidebar()><a href='#'><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26" fill="#faa4bb"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+      <li onclick=hideSidebar()><a href='#'><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="http://www.w3.org/2000/svg" width="26" fill="#faa4bb"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
       <li><a href='#one'>HOME</a></li>
       <li><a href='#learn_more'>ABOUT</a></li>
       <li><a href='#the_pinks'>CONTEÚDO</a></li>
@@ -26,7 +26,7 @@
       <li class="hideOnMobile"><a href='#the_pinks'>CONTEÚDO</a></li>
       <li class="hideOnMobile"><a href='index.html#music'>REVISÃO</a></li>
       <li class="hideOnMobile"><a href='#shows_and_series'>PROJETOS</a></li>
-      <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="0 -960 960 960" width="26" fill="#faa4bb"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+      <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="http://www.w3.org/2000/svg" width="26" fill="#faa4bb"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
     </ul>
    </nav>
 
@@ -256,7 +256,7 @@
         <h1 class="projects-title">PROJETOS</h1>
         <p class="projects-subtitle">Explore meus projetos e contribuições na área tech</p>
         <div class="projects-grid">
-            <div class="project-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="project-card">
                 <div class="project-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
@@ -268,10 +268,15 @@
                 <p class="project-description">
                     Portfolio pessoal interativo com design moderno e responsivo
                 </p>
-                <a href="https://sheycarvalho.github.io/SHEYXP/" class="project-button">View Details</a>
+                <div class="project-button-wrapper">
+                  <div class="project-button-flip">
+                    <a href="https://sheycarvalho.github.io/SHEYXP/" class="project-button project-button-front">View Details</a>
+                    <a href="https://sheycarvalho.github.io/SHEYXP/" class="project-button project-button-back">View Details</a>
+                  </div>
+                </div>
             </div>
 
-            <div class="project-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="project-card">
                 <div class="project-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
@@ -283,10 +288,15 @@
                 <p class="project-description">
                     Desenvolvimento web completo com tecnologias modernas e arquitetura escalável
                 </p>
-                <a href="https://roadmap.sh/full-stack" target="_blank" class="project-button">View Details</a>
+                <div class="project-button-wrapper">
+                  <div class="project-button-flip">
+                    <a href="https://roadmap.sh/full-stack" target="_blank" class="project-button project-button-front">View Details</a>
+                    <a href="https://roadmap.sh/full-stack" target="_blank" class="project-button project-button-back">View Details</a>
+                  </div>
+                </div>
             </div>
 
-            <div class="project-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="project-card">
                 <div class="project-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
@@ -298,10 +308,15 @@
                 <p class="project-description">
                     Estudo de caso completo de UX com protótipo interativo e jornada do usuário
                 </p>
-                <a href="https://www.figma.com/proto/YhQ5zDM5HnlfWlVQfGEVtm/Jornada-menina-de-ux---prot%C3%B3tipo--Copy-?node-id=12-59&starting-point-node-id=12%3A58" target="_blank" class="project-button">View Details</a>
+                <div class="project-button-wrapper">
+                  <div class="project-button-flip">
+                    <a href="https://www.figma.com/proto/YhQ5zDM5HnlfWlVQfGEVtm/Jornada-menina-de-ux---prot%C3%B3tipo--Copy-?node-id=12-59&starting-point-node-id=12%3A58" target="_blank" class="project-button project-button-front">View Details</a>
+                    <a href="https://www.figma.com/proto/YhQ5zDM5HnlfWlVQfGEVtm/Jornada-menina-de-ux---prot%C3%B3tipo--Copy-?node-id=12-59&starting-point-node-id=12%3A58" target="_blank" class="project-button project-button-back">View Details</a>
+                  </div>
+                </div>
             </div>
 
-            <div class="project-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+            <div class="project-card">
                 <div class="project-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
@@ -313,10 +328,15 @@
                 <p class="project-description">
                     Repositórios com projetos práticos e contribuições open source
                 </p>
-                <a href="https://foco-total-lake.vercel.app/login" target="_blank" class="project-button">View Details</a>
+                <div class="project-button-wrapper">
+                  <div class="project-button-flip">
+                    <a href="https://foco-total-lake.vercel.app/login" target="_blank" class="project-button project-button-front">View Details</a>
+                    <a href="https://foco-total-lake.vercel.app/login" target="_blank" class="project-button project-button-back">View Details</a>
+                  </div>
+                </div>
             </div>
 
-            <div class="project-card" style="background: linear-gradient(135deg, #48B3AF 0%, #2f8b88 100%);">
+            <div class="project-card">
                 <div class="project-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
@@ -328,22 +348,32 @@
                 <p class="project-description">
                     Coleção de frameworks e ferramentas essenciais para desenvolvimento moderno
                 </p>
-                <a href="biblioteca.html" class="project-button">View Details</a>
+                <div class="project-button-wrapper">
+                  <div class="project-button-flip">
+                    <a href="biblioteca.html" class="project-button project-button-front">View Details</a>
+                    <a href="biblioteca.html" class="project-button project-button-back">View Details</a>
+                  </div>
+                </div>
             </div>
 
-            <div class="project-card" style="background: linear-gradient(135deg, #D78FEE 0%, #b967e3 100%);">
+            <div class="project-card">
                 <div class="project-icon">
                     <i class="fas fa-trophy"></i>
                 </div>
                 <h3 class="project-name">APPS</h3>
                 <div class="project-info">
                     <p><i class="fas fa-calendar"></i> IDEs</p>
-                    <p><i class="fas fa-mobile-alt"></i> Aplicativos Dev</p>
+                    <p><i class="fas fa-mobile-alt"></i> Ferramentas</p>
                 </div>
                 <p class="project-description">
-                    Aplicativos e IDEs essenciais para cada linguagem de programação
+                    Aplicativos e ambientes de desenvolvimento para produtividade
                 </p>
-                <a href="apps.html" class="project-button">View Details</a>
+                <div class="project-button-wrapper">
+                  <div class="project-button-flip">
+                    <a href="apps.html" class="project-button project-button-front">View Details</a>
+                    <a href="apps.html" class="project-button project-button-back">View Details</a>
+                  </div>
+                </div>
             </div>
         </div>
     </section>

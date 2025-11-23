@@ -196,7 +196,7 @@ section {
 /* CSS for about */
 .learn_more {
     position: relative;
-    background: #5A0E24;
+    background: #ffa2c9;
     justify-content: center;
 }
 
@@ -871,8 +871,8 @@ h1 {
     height: auto;
     font-family: 'Poppins', sans-serif;
     color: #eee;
-    background: #e83e8c;
-    overflow: visible;
+    background: linear-gradient(90deg, #1a1010 0%, #ff2e8d 100%);
+    box-shadow: 0 0 40px 10px #ff2e8d44, 0 8px 32px 0 rgba(0,0,0,0.7);
 }
 
 .projects-title {
@@ -904,7 +904,8 @@ h1 {
 }
 
 .project-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: transparent !important;
+    border: 2.5px solid #ffa2c9;
     border-radius: 20px;
     padding: 45px 35px;
     min-height: 380px;
@@ -913,31 +914,25 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background 0.3s;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-}
-
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.1);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.project-card:hover::before {
-    opacity: 1;
+    box-shadow: 0 4px 24px 0 #ff2e8d33;
 }
 
 .project-card:hover {
+    background: #ffa2c9 !important;
+    color: #000;
+    border-color: #ff2e8d;
+    box-shadow: 0 8px 32px 0 #ff2e8d55;
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.project-card:hover .project-name,
+.project-card:hover .project-info,
+.project-card:hover .project-description {
+    color: #000;
 }
 
 .project-icon {
@@ -989,27 +984,82 @@ h1 {
 }
 
 .project-button {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    background: #ff2e8d;
+    border: none;
     color: #fff;
     padding: 12px 30px;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
     align-self: center;
     margin-top: 10px;
     z-index: 1;
+    box-shadow: 0 2px 12px 0 #ff2e8d33;
+    cursor: pointer;
 }
 
-.project-button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
+.project-button:hover, .project-button:focus {
+    background: #fff;
+    color: #ff2e8d;
+    border: none;
+    outline: none;
 }
 
+.project-button-wrapper {
+    perspective: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.project-button-flip {
+    width: 100%;
+    height: 48px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(.4,2,.6,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-card:hover .project-button-flip, .project-button-flip:focus {
+    transform: rotateY(180deg);
+}
+
+.project-button-front, .project-button-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 18px;
+    backface-visibility: hidden;
+    transition: background 0.3s, color 0.3s;
+}
+
+.project-button-front {
+    background: #ff2e8d;
+    color: #fff;
+    box-shadow: 0 2px 12px 0 #ff2e8d33;
+}
+
+.project-button-back {
+    background: #fff;
+    color: #ff2e8d;
+    transform: rotateY(180deg);
+    box-shadow: 0 2px 12px 0 #ff2e8d33;
+}
 @media (max-width: 768px) {
     .shows_and_series {
         padding: 80px 20px 100px;
@@ -1231,4 +1281,22 @@ footer {
         font-size: 1.5em;
         margin: 0 10px;
     }
+}
+
+.thumbnail .item {
+    background: transparent !important;
+    border: 3px solid #ffa2c9;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px 0 #ff2e8d33;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.thumbnail .item:hover {
+    background: #ffa2c9 !important;
+    border-color: #ff2e8d;
+    box-shadow: 0 8px 32px 0 #ff2e8d55;
+}
+
+.thumbnail .item .content {
+    background: transparent !important;
 }
