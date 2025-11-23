@@ -1,44 +1,43 @@
 /* About section wave background effect */
 .about-wave-bg {
     position: absolute;
-    top: 0;
     left: 0;
+    bottom: 0;
     width: 100%;
-    height: 100%;
-    min-height: 100%;
+    height: 50%;
+    min-height: 180px;
+    max-height: 320px;
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
+    display: flex;
+    align-items: flex-end;
 }
-.about-wave-bg svg {
-    position: absolute;
+.about-wave-svg {
     width: 100%;
     height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 2;
     display: block;
 }
 .about-wave-bg .wave1 {
-    animation: aboutWave1 3.5s cubic-bezier(.55,.5,.45,.5) infinite alternate;
+    animation: aboutWave1 2.5s cubic-bezier(.55,.5,.45,.5) infinite alternate;
 }
 .about-wave-bg .wave2 {
-    animation: aboutWave2 4.5s cubic-bezier(.55,.5,.45,.5) infinite alternate;
+    animation: aboutWave2 3.2s cubic-bezier(.55,.5,.45,.5) infinite alternate;
 }
 .about-wave-bg .wave3 {
-    animation: aboutWave3 5.5s cubic-bezier(.55,.5,.45,.5) infinite alternate;
+    animation: aboutWave3 4s cubic-bezier(.55,.5,.45,.5) infinite alternate;
 }
 @keyframes aboutWave1 {
     0% { transform: translateX(0) scaleY(1); }
-    100% { transform: translateX(-60px) scaleY(1.08) skewY(-2deg); }
+    100% { transform: translateX(-30px) scaleY(1.03) skewY(-1deg); }
 }
 @keyframes aboutWave2 {
     0% { transform: translateX(0) scaleY(1); }
-    100% { transform: translateX(60px) scaleY(1.04) skewY(2deg); }
+    100% { transform: translateX(30px) scaleY(1.02) skewY(1deg); }
 }
 @keyframes aboutWave3 {
     0% { transform: translateX(0) scaleY(1); }
-    100% { transform: translateX(-30px) scaleY(1.02) skewY(-1deg); }
+    100% { transform: translateX(-15px) scaleY(1.01) skewY(-0.5deg); }
 }
 section.learn_more {
     position: relative;
