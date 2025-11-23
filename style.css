@@ -1,3 +1,7 @@
+.about-wave-bg .wave-line {
+    stroke-dasharray: 8 8;
+    opacity: 0.7;
+}
 /* Force update for GitHub Pages */
 .about-wave-bg .wave5 {
     animation: aboutWave5 6.5s cubic-bezier(.55,.5,.45,.5) infinite alternate;
