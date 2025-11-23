@@ -29,7 +29,7 @@
                     loaderCount.textContent = `Loading... ${count}%`;
                     setTimeout(updateCount, 40 + Math.random() * 60);
                 } else {
-                    loaderCount.textContent = 'START';
+                    loaderCount.textContent = '';
                     startBtn.style.display = 'inline-block';
                     startBtn.focus();
                 }
