@@ -104,19 +104,26 @@
             startBtn.style.color = '#fff';
         });
         function hideLoader() {
-                        loader.style.opacity = 0;
-                        loader.style.pointerEvents = 'none';
-                        setTimeout(()=>{
-                                loader.style.display = 'none';
-                                document.body.style.overflow = '';
-                                // Scroll para HOME (id='one')
-                                var homeSection = document.getElementById('one');
-                                if(homeSection) {
-                                    homeSection.scrollIntoView({behavior:'auto'});
-                                } else {
-                                    window.scrollTo({top:0,behavior:'auto'});
-                                }
-                        }, 500);
+            loader.style.opacity = 0;
+            loader.style.pointerEvents = 'none';
+            setTimeout(()=>{
+                loader.style.display = 'none';
+                document.body.style.overflow = '';
+                // Scroll para HOME (id='one') de forma robusta para mobile e desktop
+                var homeSection = document.getElementById('one');
+                if(homeSection) {
+                    // Centraliza a HOME na viewport, mesmo em mobile
+                    const rect = homeSection.getBoundingClientRect();
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const nav = document.querySelector('nav');
+                    let navHeight = nav ? nav.offsetHeight : 0;
+                    // Calcula o topo da HOME menos a altura do nav
+                    const top = rect.top + scrollTop - navHeight;
+                    window.scrollTo({top, behavior: 'smooth'});
+                } else {
+                    window.scrollTo({top:0,behavior:'smooth'});
+                }
+            }, 500);
         }
         startBtn.addEventListener('click', hideLoader);
         startBtn.addEventListener('keyup',e=>{if(e.key==='Enter'){hideLoader();}});
