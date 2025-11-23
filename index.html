@@ -10,7 +10,52 @@
 </head>
 <body>
 
-   <nav>
+    <div id="game-loader" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.5s;">
+        <div id="loader-count" style="color:#ff2e8d;font-size:2.5rem;font-family:'Poppins',sans-serif;letter-spacing:2px;margin-bottom:1.5rem;">Loading... 0%</div>
+        <button id="start-btn" style="display:none;padding:1rem 2.5rem;font-size:1.5rem;font-family:'Poppins',sans-serif;background:#ff2e8d;color:#fff;border:none;border-radius:2rem;cursor:pointer;box-shadow:0 2px 12px #ff2e8d80;transition:background 0.2s, color 0.2s;">START</button>
+    </div>
+
+    <nav>
+        <script>
+            // Loading effect
+            let count = 0;
+            const loader = document.getElementById('game-loader');
+            const loaderCount = document.getElementById('loader-count');
+            const startBtn = document.getElementById('start-btn');
+            function updateCount() {
+                if (count < 100) {
+                    count += Math.floor(Math.random() * 13) + 3;
+                    if (count > 100) count = 100;
+                    loaderCount.textContent = `Loading... ${count}%`;
+                    setTimeout(updateCount, 40 + Math.random() * 60);
+                } else {
+                    loaderCount.textContent = 'START';
+                    startBtn.style.display = 'inline-block';
+                    startBtn.focus();
+                }
+            }
+            updateCount();
+            startBtn.addEventListener('mouseenter',()=>{
+                startBtn.style.background = '#faa4bb';
+                startBtn.style.color = '#000';
+            });
+            startBtn.addEventListener('mouseleave',()=>{
+                startBtn.style.background = '#ff2e8d';
+                startBtn.style.color = '#fff';
+            });
+            startBtn.addEventListener('click',()=>{
+                loader.style.opacity = 0;
+                setTimeout(()=>{ loader.style.display = 'none'; }, 500);
+            });
+            // Enter key for accessibility
+            startBtn.addEventListener('keyup',e=>{if(e.key==='Enter'){startBtn.click();}});
+            // Prevent scroll while loading
+            document.body.style.overflow = 'hidden';
+            const observer = new MutationObserver(()=>{
+                if(loader.style.display==='none') document.body.style.overflow='auto';
+            });
+            observer.observe(loader,{attributes:true,attributeFilter:['style']});
+        </script>
     <ul class="sidebar">
       <li onclick=hideSidebar()><a href='#'><svg xmlns="http://www.w3.org/2000/svg" height="26" viewBox="http://www.w3.org/2000/svg" width="26" fill="#faa4bb"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
       <li><a href='#one'>HOME</a></li>
