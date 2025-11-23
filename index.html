@@ -108,7 +108,10 @@
             });
             startBtn.addEventListener('click',()=>{
                 loader.style.opacity = 0;
-                setTimeout(()=>{ loader.style.display = 'none'; }, 500);
+                setTimeout(()=>{
+                    loader.style.display = 'none';
+                    window.location.hash = '#one';
+                }, 500);
             });
             // Enter key for accessibility
             startBtn.addEventListener('keyup',e=>{if(e.key==='Enter'){startBtn.click();}});
