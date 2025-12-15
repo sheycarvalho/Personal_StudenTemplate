@@ -1,13 +1,17 @@
-// Substitua pelos dados do seu projeto Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyBM_bNfuzZ8C7lfvvmpw-ARq0AjhZ4nWJk",
-  authDomain: "visionboard-app-d5098.firebaseapp.com",
-  projectId: "visionboard-app-d5098",
-  storageBucket: "visionboard-app-d5098.appspot.com",
-  messagingSenderId: "980916499306",
-  appId: "1:980916499306:web:d5bc71ec966975c25e2b13"
-};
 
-// Inicialização do Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+// ATENÇÃO: As credenciais do Firebase foram removidas por segurança.
+// Crie um arquivo chamado firebase-config.private.js (adicione ao .gitignore) com o seguinte conteúdo:
+//
+//   const firebaseConfig = {
+//     apiKey: "SUA_API_KEY",
+//     authDomain: "SEU_AUTH_DOMAIN",
+//     projectId: "SEU_PROJECT_ID",
+//     storageBucket: "SEU_STORAGE_BUCKET",
+//     messagingSenderId: "SEU_MESSAGING_SENDER_ID",
+//     appId: "SEU_APP_ID"
+//   };
+//
+//   firebase.initializeApp(firebaseConfig);
+//   const db = firebase.firestore();
+//
+// E importe este arquivo no HTML ao invés deste.
