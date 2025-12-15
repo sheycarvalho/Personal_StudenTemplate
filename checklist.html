@@ -202,10 +202,19 @@
         const totalTasksSpan = document.getElementById('totalTasks');
         const completedTasksSpan = document.getElementById('completedTasks');
 
-        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        // Defina um identificador único para cada seção/área (exemplo: pelo nome da página ou parâmetro na URL)
+        // Exemplo: checklist.html?area=uxdesign
+        function getChecklistKey() {
+            const params = new URLSearchParams(window.location.search);
+            const area = params.get('area') || 'default';
+            return 'tasks_' + area;
+        }
+
+        let tasks = JSON.parse(localStorage.getItem(getChecklistKey())) || [];
 
         function saveTasks() {
-            localStorage.setItem('tasks', JSON.stringify(tasks));
+            localStorage.setItem(getChecklistKey(), JSON.stringify(tasks));
         }
 
         function updateStats() {

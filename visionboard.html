@@ -388,7 +388,15 @@
 
     <script>
 
-        // Carregar dados salvos ao abrir a página
+
+        // Defina um identificador único para cada seção/área (exemplo: pelo nome da página ou parâmetro na URL)
+        // Exemplo: visionboard.html?area=uxdesign
+        function getVisionBoardKey() {
+            const params = new URLSearchParams(window.location.search);
+            const area = params.get('area') || 'default';
+            return 'visionBoard_' + area;
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             loadVisionBoard();
         });
@@ -409,7 +417,7 @@
                 link3: document.getElementById('link3').value,
                 url3: document.getElementById('url3').value
             };
-            localStorage.setItem('visionBoard', JSON.stringify(data));
+            localStorage.setItem(getVisionBoardKey(), JSON.stringify(data));
             // Feedback visual
             const button = document.querySelector('.save-button');
             const originalText = button.innerHTML;
@@ -422,7 +430,7 @@
         }
 
         function loadVisionBoard() {
-            const saved = localStorage.getItem('visionBoard');
+            const saved = localStorage.getItem(getVisionBoardKey());
             if (saved) {
                 const data = JSON.parse(saved);
                 document.getElementById('saude').value = data.saude || '';
