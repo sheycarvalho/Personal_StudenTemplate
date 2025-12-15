@@ -208,19 +208,7 @@
 
         let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-        let tasks = [];
-
-        // ID do usuário (pode ser customizado para login futuramente)
-        const userId = 'defaultUser';
-
-        async function saveTasks() {
-            try {
-                await db.collection('checklists').doc(userId).set({ tasks });
-            } catch (error) {
-                alert('Erro ao salvar no servidor: ' + error.message);
-            }
-        }
-
+        function saveTasks() {
             localStorage.setItem('tasks', JSON.stringify(tasks));
         }
 
@@ -234,7 +222,6 @@
             tasks.forEach((task, index) => {
                 const li = document.createElement('li');
                 li.className = `todo-item ${task.completed ? 'completed' : ''}`;
-                
                 li.innerHTML = `
                     <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="toggleTask(${index})">
                     <span>${task.text}</span>
@@ -242,40 +229,25 @@
                         <i class="fas fa-trash"></i>
                     </button>
                 `;
-
-        async function loadTasks() {
-            try {
-                const doc = await db.collection('checklists').doc(userId).get();
-                if (doc.exists) {
-                    tasks = doc.data().tasks || [];
-                } else {
-                    tasks = [];
-                }
-                renderTasks();
-            } catch (error) {
-                alert('Erro ao carregar do servidor: ' + error.message);
-            }
-        }
-                
                 todoList.appendChild(li);
             });
             updateStats();
         }
 
-                await saveTasks();
+        function addTask() {
             const text = taskInput.value.trim();
             if (text) {
                 tasks.push({ text, completed: false });
                 taskInput.value = '';
                 saveTasks();
                 renderTasks();
-            await saveTasks();
+            }
         }
 
         function toggleTask(index) {
             tasks[index].completed = !tasks[index].completed;
             saveTasks();
-            await saveTasks();
+            renderTasks();
         }
 
         function deleteTask(index) {
@@ -283,9 +255,6 @@
             saveTasks();
             renderTasks();
         }
-
-        // Carregar tarefas ao abrir a página
-        window.addEventListener('DOMContentLoaded', loadTasks);
 
         addBtn.addEventListener('click', addTask);
         taskInput.addEventListener('keypress', (e) => {

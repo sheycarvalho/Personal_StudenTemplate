@@ -387,15 +387,13 @@
     </div>
 
     <script>
+
         // Carregar dados salvos ao abrir a página
         window.addEventListener('DOMContentLoaded', () => {
             loadVisionBoard();
         });
 
-        // ID do usuário (pode ser customizado para login futuramente)
-        const userId = 'defaultUser';
-
-        async function saveVisionBoard() {
+        function saveVisionBoard() {
             const data = {
                 saude: document.getElementById('saude').value,
                 carreira: document.getElementById('carreira').value,
@@ -411,44 +409,35 @@
                 link3: document.getElementById('link3').value,
                 url3: document.getElementById('url3').value
             };
-
-            try {
-                await db.collection('visionBoards').doc(userId).set(data);
-                // Feedback visual
-                const button = document.querySelector('.save-button');
-                const originalText = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check"></i> Salvo com sucesso!';
-                button.style.background = '#27ae60';
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-                }, 2000);
-            } catch (error) {
-                alert('Erro ao salvar no servidor: ' + error.message);
-            }
+            localStorage.setItem('visionBoard', JSON.stringify(data));
+            // Feedback visual
+            const button = document.querySelector('.save-button');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Salvo com sucesso!';
+            button.style.background = '#27ae60';
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+            }, 2000);
         }
 
-        async function loadVisionBoard() {
-            try {
-                const doc = await db.collection('visionBoards').doc(userId).get();
-                if (doc.exists) {
-                    const data = doc.data();
-                    document.getElementById('saude').value = data.saude || '';
-                    document.getElementById('carreira').value = data.carreira || '';
-                    document.getElementById('familia').value = data.familia || '';
-                    document.getElementById('financeiro').value = data.financeiro || '';
-                    document.getElementById('viagens').value = data.viagens || '';
-                    document.getElementById('hobbies').value = data.hobbies || '';
-                    document.getElementById('relacionamentos').value = data.relacionamentos || '';
-                    document.getElementById('link1').value = data.link1 || '';
-                    document.getElementById('url1').value = data.url1 || '';
-                    document.getElementById('link2').value = data.link2 || '';
-                    document.getElementById('url2').value = data.url2 || '';
-                    document.getElementById('link3').value = data.link3 || '';
-                    document.getElementById('url3').value = data.url3 || '';
-                }
-            } catch (error) {
-                alert('Erro ao carregar do servidor: ' + error.message);
+        function loadVisionBoard() {
+            const saved = localStorage.getItem('visionBoard');
+            if (saved) {
+                const data = JSON.parse(saved);
+                document.getElementById('saude').value = data.saude || '';
+                document.getElementById('carreira').value = data.carreira || '';
+                document.getElementById('familia').value = data.familia || '';
+                document.getElementById('financeiro').value = data.financeiro || '';
+                document.getElementById('viagens').value = data.viagens || '';
+                document.getElementById('hobbies').value = data.hobbies || '';
+                document.getElementById('relacionamentos').value = data.relacionamentos || '';
+                document.getElementById('link1').value = data.link1 || '';
+                document.getElementById('url1').value = data.url1 || '';
+                document.getElementById('link2').value = data.link2 || '';
+                document.getElementById('url2').value = data.url2 || '';
+                document.getElementById('link3').value = data.link3 || '';
+                document.getElementById('url3').value = data.url3 || '';
             }
         }
 
